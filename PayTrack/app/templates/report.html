@@ -1,0 +1,113 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчет</title>
+    <link rel="stylesheet" href="/static/css/report_styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Сервис отчетности</h1>
+
+        <!-- Таблица -->
+        <h2>Отчет по платежам и услугам</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Название услуги</th>
+                    <th onclick="sortTable(1)">Стоимость</th>
+                    <th onclick="sortTable(2)">Количество платежей</th>
+                    <th onclick="sortTable(3)">Общая сумма оплат</th>
+                    <th onclick="sortTable(4)">Процент оплаченных платежей</th>
+                </tr>
+            </thead>
+            <tbody id="report-table-body"></tbody>
+        </table>
+        <!-- Итоговые данные -->
+        <div class="summary">
+            <h3>Основные итоги:</h3>
+            <p>Общая сумма оплат по всем услугам: <span id="total-income"></span></p>
+            <p>Общее количество платежей по всем услугам: <span id="total-payments"></span></p>
+        </div>
+        <!-- Графики -->
+
+        <div class="charts">
+            <div class="chart-container">
+                <canvas id="popularityChart"></canvas>
+                <p>Распределение платежей по услугам</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="incomeChart"></canvas>
+                <p>Динамика оплаченных платежей по услугам</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Таблица клиентов -->
+    <h2>Отчет о текущей задолженности</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Количество платежей</th>
+                <th>Общая сумма оплат</th>
+                <th>Задолженность</th>
+            </tr>
+        </thead>
+        <tbody id="client-report-table-body"></tbody>
+    </table>
+
+    <!-- Итоговые данные для клиентов -->
+    <div class="summary">
+        <h3>Основные итоги:</h3>
+        <p>Общая сумма оплаченных платежей: <span id="total-client-income"></span></p>
+        <p>Общее количество платежей: <span id="total-client-payments"></span></p>
+        <p>Общая сумма задолженности: <span id="total-client-debt"></span></p>
+    </div>
+
+
+    <!-- График задолженности по клиентам -->
+    <div class="single-chart-container">
+        <canvas id="clientDebtChart" width="400" height="200"></canvas>
+        <p>Распределение задолженностей</p>
+    </div>
+
+
+    <h2>Отчет о сроках и статусах платежей</h2>
+    <table>
+        <thead>
+            <tr>
+                <th data-column="service_name" data-order="asc">Услуга</th>
+                <th data-column="client_name" data-order="asc">ФИО</th>
+                <th data-column="deadline" data-order="asc">Крайний срок</th>
+                <th data-column="status" data-order="asc">Статус</th>
+                <th data-column="date" data-order="asc">Дата оплаты</th>
+                <th data-column="is_overdue" data-order="asc">Просрочено</th>
+            </tr>
+        </thead>
+        <tbody id="status-report-table-body"></tbody>
+    </table>
+
+
+
+
+    <div class="charts">
+        <div class="chart-container">
+            <canvas id="statusChart"></canvas>
+            <p>Распределение статусов платежей</p>
+        </div>
+        <div class="chart-container">
+            <canvas id="paymentDatesChart"></canvas>
+            <p>Динамика просроченных платежей</p>
+        </div>
+    </div>
+
+
+    <script src="/static/js/report.js"></script>
+
+
+
+</body>

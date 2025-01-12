@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги и платежи</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body class="bg-light">
+
+    <div class="container my-4">
+        <h1 class="text-center text-primary mb-4">Микросервис для учета платежей</h1>
+
+        <!-- Навигация -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button class="btn btn-outline-primary" onclick="navigateTo('services')">Услуги</button>
+                <button class="btn btn-outline-primary ms-3" onclick="navigateTo('payments')">Платежи</button>
+                <button class="btn btn-outline-primary ms-3" onclick="window.location.href='/report'">Отчеты</button>
+            </div>
+        </nav>
+
+        <!-- Страница услуг -->
+        <div id="services-page" class="page mt-4">
+            <h2 class="text-secondary">Сервис управления услугами</h2>
+
+            <!-- Форма добавления услуги -->
+            <form id="add-service-form" class="mb-4 p-4 border rounded shadow-sm bg-white">
+                <h3>Добавить услугу</h3>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Название услуги:</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="cost" class="form-label">Стоимость:</label>
+                    <input type="number" id="cost" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="deadline" class="form-label">Срок оплаты:</label>
+                    <input type="date" id="deadline" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success">Добавить</button>
+            </form>
+
+            <!-- Форма поиска услуги -->
+            <form id="search-service-form" class="mb-4 p-4 border rounded shadow-sm bg-white">
+                <h3>Поиск услуги</h3>
+                <div class="mb-3">
+                    <label for="search-name" class="form-label">Название услуги:</label>
+                    <input type="text" id="search-name" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-info">Поиск</button>
+            </form>
+
+            <!-- Форма обновления услуги -->
+            <form id="update-service-form" class="mb-4 p-4 border rounded shadow-sm bg-white" style="display: none;">
+                <h3>Обновить услугу</h3>
+                <input type="hidden" id="update-id">
+                <div class="mb-3">
+                    <label for="update-name" class="form-label">Название:</label>
+                    <input type="text" id="update-name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="update-cost" class="form-label">Стоимость:</label>
+                    <input type="number" id="update-cost" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="update-deadline" class="form-label">Срок:</label>
+                    <input type="text" id="update-deadline" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-warning">Обновить</button>
+            </form>
+
+            <!-- Таблица с услугами -->
+            <h3 class="text-secondary">Список услуг</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Стоимость</th>
+                        <th>Срок оплаты</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="services-table"></tbody>
+            </table>
+        </div>
+
+        <!-- Страница платежей -->
+        <div id="payments-page" class="page mt-4" style="display: none;">
+            <h2 class="text-secondary">Сервис управления платежами</h2>
+
+            <!-- Форма добавления платежа -->
+            <form id="add-payment-form" class="mb-4 p-4 border rounded shadow-sm bg-white">
+                <h3>Добавить платеж</h3>
+                <div class="mb-3">
+                    <label for="client-name" class="form-label">ФИО:</label>
+                    <input type="text" id="client-name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="service-name" class="form-label">Услуга:</label>
+                    <select id="service-name" class="form-select" required></select>
+                </div>
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Сумма оплаты:</label>
+                    <input type="number" id="amount" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Статус оплаты:</label>
+                    <select id="status" class="form-select">
+                        <option value="Оплачено">Оплачено</option>
+                        <option value="Не оплачено">Не оплачено</option>
+                        <option value="Оплачено частично">Оплачено частично</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Дата:</label>
+                    <input type="date" id="date" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success">Добавить</button>
+            </form>
+
+            <!-- Форма поиска платежа -->
+            <form id="search-payment-form" class="mb-4 p-4 border rounded shadow-sm bg-white">
+                <h3>Поиск платежа</h3>
+                <div class="mb-3">
+                    <label for="search-client-name" class="form-label">ФИО:</label>
+                    <input type="text" id="search-client-name" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-info">Поиск</button>
+            </form>
+
+            <!-- Форма обновления платежа -->
+            <form id="update-payment-form" class="mb-4 p-4 border rounded shadow-sm bg-white" style="display:none;">
+                <h3>Обновить платеж</h3>
+                <input type="hidden" id="update-payment-id">
+                <div class="mb-3">
+                    <label for="update-client-name" class="form-label">Имя клиента:</label>
+                    <input type="text" id="update-client-name" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="update-status" class="form-label">Статус:</label>
+                    <input type="text" id="update-status" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="update-service-name" class="form-label">Название услуги:</label>
+                    <input type="text" id="update-service-name" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="update-amount" class="form-label">Сумма:</label>
+                    <input type="number" id="update-amount" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="update-date" class="form-label">Дата:</label>
+                    <input type="date" id="update-date" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-warning">Обновить</button>
+            </form>
+
+            <!-- Таблица с платежами -->
+            <h3 class="text-secondary">Список платежей</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ФИО</th>
+                        <th>Название услуги</th>
+                        <th>Сумма</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="payments-table"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.11/dist/sweetalert2.all.min.js"></script>
+
+
+    <script src="/static/js/script.js"></script>
+    <script src="/static/js/payment.js"></script>
+
+</body>
+

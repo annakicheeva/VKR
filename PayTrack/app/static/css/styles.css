@@ -1,0 +1,116 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 20px;
+    background-color: #e9ecef; /* Светлый фон для уюта */
+    color: #212529;
+}
+
+h1 {
+    color: #4b8dee; /* Яркий синий для заголовка */
+    font-weight: 700;
+}
+
+h2, h3 {
+    color: #495057; /* Темно-серый для подзаголовков */
+    font-weight: 600;
+}
+
+form {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #dee2e6; /* Светлая рамка */
+    border-radius: 10px;
+    background: #ffffff; /* Белый фон */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+input, button, select {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #0d6efd; /* Подсветка при фокусе */
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.5); /* Легкая подсветка */
+}
+
+button {
+    background-color: #8c7bbd; /* Синий цвет кнопки */
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #8fb8e4; /* Темно-синий при наведении */
+}
+
+.table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff; /* Белый фон таблицы */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #dee2e6;
+}
+
+th {
+    background-color: #f8f9fa; /* Серый фон заголовков таблицы */
+    color: #495057; /* Темно-серый текст */
+    font-weight: 700;
+}
+
+td {
+    background-color: #ffffff; /* Белый фон для строк */
+    color: #212529; /* Основной цвет текста */
+}
+
+tr:nth-child(even) td {
+    background-color: #f8f9fa; /* Полосатая таблица */
+}
+
+.navbar {
+    padding: 10px 20px;
+    background: #ffffff; /* Белый фон навигации */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+.navbar button {
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.navbar button:hover {
+    background-color: #f8f9fa; /* Подсветка кнопки при наведении */
+}
+
+.bg-light {
+    background-color: #f8f9fa !important; /* Уточнение для общего фона */
+}
+
+.btn-outline-primary {
+    border: 2px solid #0d6efd;
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+

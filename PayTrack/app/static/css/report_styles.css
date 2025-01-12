@@ -1,0 +1,98 @@
+/* Основные стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Таблица */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead th {
+    cursor: pointer;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+tbody td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Прогресс бар */
+.progress-bar-container {
+    background-color: #e0e0e0;
+    height: 15px;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 15px;
+    background: linear-gradient(to right, #FF6384 , #9966FF, #4BC0C0);
+}
+
+/* Графики */
+.charts {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.chart-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 45%;
+    text-align: center;
+    width: 400px; 
+    height: 450px; 
+    display: inline-block; 
+    margin: 10px; 
+}
+
+.single-chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin: 20px 0;
+    text-align: center;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+.summary {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.summary h3 {
+    margin-bottom: 10px;
+}
+
+
